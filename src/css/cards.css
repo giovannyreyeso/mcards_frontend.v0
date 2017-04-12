@@ -1,70 +1,77 @@
 ul.collection.cards {
-    border: none;
-    background: #EDEDED;
-    /*padding: 10px;
+  border: none;
+  background: #EDEDED;
+  /*padding: 10px;
     height: 500px;*/
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
-
 .card-accion {
-    background: #3f51b5;
-    margin-bottom: -8px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    position: relative;
-    height: 35px;
+  background: #3f51b5;
+  margin-bottom: -8px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: relative;
+  height: 60px;
 }
-
 .card-accion h5 {
-    color: #FFF;
-    font-size: 16px;
-    text-transform: uppercase;
-    line-height: 2.4;
-    margin-left: 20px;
-    letter-spacing: 2px;
-    font-weight: 400;
+  color: #FFF;
+  text-transform: uppercase;
+  line-height: 3.2;
+  margin-left: 20px;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 20px;
 }
-
 .card-accion i.material-icons {
-    color: #FFF;
-    float: right;
-    margin-right: 13px;
-    margin-top: 7px;
-    cursor: pointer;
+  color: #FFF;
+  float: right;
+  margin-right: 13px;
+  margin-top: 7px;
+  cursor: pointer;
+  font-size: 30px;
+  line-height: 1.5;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
 }
-
+.card-accion i.material-icons:hover {
+  -ms-transform: rotate(360deg);
+  /* IE 9 */
+  -webkit-transform: rotate(360deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(360deg);
+}
 ul.collection.cards li {
-    margin-bottom: 10px;
-    border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
-    padding-left: 25px !important;
+  margin-bottom: 10px;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  padding-left: 25px !important;
 }
-
 p.cut-date {
-    float: right;
-    top: 45px;
-    position: absolute;
-    right: 35px;
-    font-size: 16px;
+  float: right;
+  top: 45px;
+  position: absolute;
+  right: 35px;
+  font-size: 16px;
 }
-
 p.cut-date i, p.card-due i {
-    font-size: 20px;
-    color: #1e88e5;
-    vertical-align: middle;
+  font-size: 20px;
+  color: #1e88e5;
+  vertical-align: middle;
 }
-
 p.card-due {
   float: right;
-      top: 45px;
-      position: absolute;
-      left: 15px;
-      font-size: 16px;
+  top: 45px;
+  position: absolute;
+  left: 15px;
+  font-size: 16px;
 }
 ul.collection.cards li.initial-state {
-    font-size: 20px;
-    text-align: center;
-    padding: 15px;
+  font-size: 20px;
+  text-align: center;
+  padding: 15px;
 }

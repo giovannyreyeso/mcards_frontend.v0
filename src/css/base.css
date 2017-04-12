@@ -1,0 +1,22 @@
+div#app {
+    background: #FCFDFD;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+nav ul a {
+    color: #666;
+}
+
+nav ul a:hover{
+    color:#03a9f4;
+    background-color: transparent;
+}
+
+nav .brand-logo {
+    color: #666;
+}
+nav .brand-logo i.material-icons{
+    font-size: 55px;
+}

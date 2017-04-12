@@ -4,7 +4,7 @@ import NavLink from './NavLink';
 class Header extends Component {
   render() {
     return (
-        <nav>
+        <nav className="white">
           <div className="nav-wrapper">
             <a href="#" className="brand-logo left">
               <i className="material-icons">code</i>
