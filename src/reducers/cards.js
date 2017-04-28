@@ -8,7 +8,9 @@ const initialState = {
         all: [],
         showForm: false,
         listCardsIsLoading: true,
-        listcardsHasError: false
+        listcardsHasError: false,
+        showCardDetails: false,
+        showListCards: true
     }
 }
 
@@ -21,9 +23,10 @@ export default function Card(state = initialState, action) {
                     ...state.cards.all,
                     action.playload
                 ]
-
                 let obj = Object.assign({}, state.cards, {all: addCardList})
+                obj.showListCards = true;
                 obj.showForm = false;
+                obj.showCardDetails = false;
                 return {state, cards: obj};
             }
         case CardsActionTypes.REMOVE_CARD:
@@ -36,14 +39,22 @@ export default function Card(state = initialState, action) {
                 obj.showForm = false;
                 return {state, cards: obj};
             }
-        case CardsActionTypes.SHOW_ADD_CARD:
+        case CardsActionTypes.SHOW_FORM_ADD_CARD:
             {
-                let obj = Object.assign({}, state.cards, {showForm: true})
+                let obj = Object.assign({}, state.cards, {
+                    showForm: true,
+                    showListCards: false,
+                    showCardDetails: false
+                })
                 return {state, cards: obj};
             }
-        case CardsActionTypes.HIDE_ADD_CARD:
+        case CardsActionTypes.SHOW_LIST_CARDS:
             {
-                let obj = Object.assign({}, state.cards, {showForm: false})
+                let obj = Object.assign({}, state.cards, {
+                    showListCards: true,
+                    showForm: false,
+                    showCardDetails: false
+                })
                 return {state, cards: obj};
             }
         case CardsActionTypes.LIST_ALL_CARDS:
@@ -59,6 +70,15 @@ export default function Card(state = initialState, action) {
             {
                 let obj = Object.assign({}, state.cards, {listCardsIsLoading: action.playload});
                 return {state, cards: obj}
+            }
+        case CardsActionTypes.OPEN_CARD_DETAILS:
+            {
+                let obj = Object.assign({}, state.cards, {
+                    showCardDetails: true,
+                    showListCards: false
+                })
+
+                return {state, cards: obj};
             }
         default:
             return state;

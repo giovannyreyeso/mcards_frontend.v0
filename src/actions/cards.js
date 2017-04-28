@@ -4,10 +4,10 @@ export const addCard = playload => {
     return {type: CardsActionTypes.ADD_CARD, playload};
 };
 export const showAddCard = () => {
-    return {type: CardsActionTypes.SHOW_ADD_CARD, playload: true}
+    return {type: CardsActionTypes.SHOW_FORM_ADD_CARD, playload: true}
 }
-export const hideAddCard = () => {
-    return {type: CardsActionTypes.HIDE_ADD_CARD, playload: false}
+export const showListCards = () => {
+    return {type: CardsActionTypes.SHOW_LIST_CARDS, playload: true}
 }
 export const removeCard = (index) => {
     return {type: CardsActionTypes.REMOVE_CARD, playload: index}
@@ -24,7 +24,9 @@ export const listCardsIsLoading = (bool) => {
 export const listcardsHasError = (bool) => {
     return {type: CardsActionTypes.LIST_ALL_CARDS_ERROR, playload: bool}
 }
-
+export const openCardDetails = (id) => {
+    return {type: CardsActionTypes.OPEN_CARD_DETAILS, playload: id}
+}
 export function loadData(url) {
     return (dispatch) => {
         dispatch(listCardsIsLoading(true));

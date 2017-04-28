@@ -1,12 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as PlayerActionCreators from '../actions/cards';
+import * as CardActionCreators from '../actions/cards';
 
 import Card from '../components/cards/Card';
 import CardForm from '../components/cards/CardForm';
 import InitialState from '../components/cards/InitialState'
 import LoadingState from '../components/cards/LoadingState'
+import CardContainerHeader from '../components/cards/CardContainerHeader'
 
 class Cards extends Component {
     static propTypes = {
@@ -15,27 +16,22 @@ class Cards extends Component {
     componentDidMount() {
         this.props.loadData('http://58e8063743e10712000e6381.mockapi.io/mcards/cards');
     }
+
     render() {
         const {dispatch, cards} = this.props;
         //const mapStateToProps = state => ({cards: state.cards});
+        let listCard;
         let cardForm,
-            cardsComponents,
-            cardAddButton,
-            initialState,
-            loadingState;
-        if (cards.showForm) {
-            cardForm = <CardForm addCard={this.props.addCard}/>
-            cardAddButton = (
-                <h5>
-                    <i className="material-icons back" onClick={this.props.hideAddCard}>ic_arrow_back</i>
-                    My Cards
-                </h5>
-            )
-        } else {
-            cardsComponents = cards.all.map((card, index) => (<Card index={index} nombre={card.nombre} key={index} disponible={card.disponible} corte={card.corte} removeCard={this.props.removeCard}/>));
-            cardAddButton = (
+            cardContainerHeader,
+            cardDetails;
+        if (cards.showListCards) {
+            let cardsComponents,
+                initialState,
+                loadingState;
+            cardsComponents = cards.all.map((card, index) => (<Card id={card.id} index={index} nombre={card.nombre} key={index} disponible={card.disponible} corte={card.corte} removeCard={this.props.removeCard} openCardDetails={this.props.openCardDetails}/>));
+            cardContainerHeader = (
                 <h5>My Cards
-                    <i className="material-icons" onClick={this.props.showAddCard}>add</i>
+                    <i className="material-icons add" onClick={this.props.showAddCard}>add</i>
                 </h5>
             )
             if (cardsComponents.length <= 0 && !cards.listCardsIsLoading) {
@@ -44,18 +40,37 @@ class Cards extends Component {
             if (cardsComponents.length <= 0 && cards.listCardsIsLoading) {
                 loadingState = <LoadingState/>
             }
-        }
-        return (
-            <div className="col s12 m6 push-m3">
-                <div className="card-accion">
-                    {cardAddButton}
-                </div>
+            listCard = (
                 <ul className="collection cards">
                     {cardsComponents}
                     {initialState}
                     {loadingState}
                 </ul>
-                {cardForm}
+            )
+        }
+        if (cards.showForm) {
+            cardForm = <CardForm addCard={this.props.addCard}/>
+            cardContainerHeader = <CardContainerHeader backFunction={this.props.showListCards} title="Back to my cards"/>
+        } else if (cards.showCardDetails) {
+            cardContainerHeader = <CardContainerHeader backFunction={this.props.showListCards} title="Back to my cards"/>
+            cardDetails = (
+                <h5>Detalles...</h5>
+            )
+        }
+        return (
+            <div className="col s12 m6 push-m3">
+                <div className="card-accion">
+                    {cardContainerHeader}
+                </div>
+                <div className="list-card">
+                    {listCard}
+                </div>
+                <div className="card-form">
+                    {cardForm}
+                </div>
+                <div className="card-details">
+                    {cardDetails}
+                </div>
             </div>
         );
     }
@@ -69,17 +84,18 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadData: (url) => dispatch(PlayerActionCreators.loadData(url)),
-        showAddCard: () => dispatch(PlayerActionCreators.showAddCard()),
-        addCard: (card) => dispatch(PlayerActionCreators.addCard(card)),
-        hideAddCard: () => dispatch(PlayerActionCreators.hideAddCard()),
-        removeCard: (index) => dispatch(PlayerActionCreators.removeCard(index))
+        loadData: (url) => dispatch(CardActionCreators.loadData(url)),
+        showAddCard: () => dispatch(CardActionCreators.showAddCard()),
+        addCard: (card) => dispatch(CardActionCreators.addCard(card)),
+        showListCards: () => dispatch(CardActionCreators.showListCards()),
+        removeCard: (index) => dispatch(CardActionCreators.removeCard(index)),
+        openCardDetails: (id) => dispatch(CardActionCreators.openCardDetails(id))
     };
 };
 //const mapStateToProps = state => ({cards: state.cards});
-/*const addCard = bindActionCreators(PlayerActionCreators.addCard, dispatch);
-  const showAddCard = bindActionCreators(PlayerActionCreators.showAddCard, dispatch);
-const hideAddCard = bindActionCreators(PlayerActionCreators.hideAddCard, dispatch);
-const removeCard = bindActionCreators(PlayerActionCreators.removeCard, dispatch);
+/*const addCard = bindActionCreators(CardActionCreators.addCard, dispatch);
+  const showAddCard = bindActionCreators(CardActionCreators.showAddCard, dispatch);
+const hideAddCard = bindActionCreators(CardActionCreators.hideAddCard, dispatch);
+const removeCard = bindActionCreators(CardActionCreators.removeCard, dispatch);
 */
 export default connect(mapStateToProps, mapDispatchToProps)(Cards);
