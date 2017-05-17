@@ -4,21 +4,26 @@ import {Router, Route, browserHistory} from 'react-router';
 //components here
 import NotFound from './components/NotFound'
 import App from './components/App';
+import Me from './components/Me';
 import About from './components/About'
 import Signin from './components/Signin'
 import Dashboard from './components/Dashboard';
 import Cards from './containers/cards'
 import Stats from './components/stats/Stats'
+import Logout from './components/Logout'
+
 /*Check commit*/
 const routes = ({store}) => (
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route component={App}>
                 <Route path="/" component={Dashboard}/>
+                <Route path="/me" component={Me}/>
                 <Route path="/about" component={About}/>
                 <Route path="/signin" component={Signin}/>
                 <Route path="/cards" component={Cards}/>
                 <Route path="/stats" component={Stats}/>
+                <Route path="/logout" component={Logout}/>
                 <Route path="*" component={NotFound}/>
             </Route>
         </Router>

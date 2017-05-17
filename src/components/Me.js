@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router'
 
-class Stats extends Component {
+class Me extends Component {
   componentDidMount() {
       //console.log(this.props);
       if (this.props.user == null)
@@ -11,7 +11,7 @@ class Stats extends Component {
   render() {
     return (
       <div>
-        <h1>Stats</h1>
+        <h1>Me</h1>
       </div>
     );
   }
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
 
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Stats);
+export default connect(mapStateToProps, mapDispatchToProps)(Me);

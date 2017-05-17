@@ -1,0 +1,20 @@
+li.nav-item {
+    margin: 10px;
+}
+
+li.nav-item a i {
+    text-align: center;
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+}
+
+
+li.nav-item a {
+    font-size: 17px;
+}
+
+nav.navbar.navbar-toggleable-md.navbar-light {
+    background: #FFF;
+    border-bottom: 1px solid #CCC;
+}

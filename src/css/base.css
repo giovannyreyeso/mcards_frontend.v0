@@ -13,7 +13,10 @@ nav ul a:hover{
     color:#03a9f4;
     background-color: transparent;
 }
-
+nav ul li a.active {
+    color: #039be5;
+    font-weight: bold;
+}
 nav .brand-logo {
     color: #666;
 }

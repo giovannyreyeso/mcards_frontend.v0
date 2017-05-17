@@ -5,30 +5,29 @@ class Card extends Component {
         if (e)
             e.preventDefault();
 
-        this.props.openCardDetails(this.props.id);
+        this.props.openCardDetails(this.props._id);
     };
-
     render() {
         return (
             <li className="collection-item avatar animated bounceIn" onClick={this.openCardDetails}>
                 <div className="title">
-                    {this.props.nombre}
+                    {this.props.name}
                     <p className="card-due">
-                        $ {this.props.disponible.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}
+                        $ {this.props.aviable.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}
                     </p>
                 </div>
                 <div className="cut-date">
-                    {this.props.corte}
+                    { moment(parseInt(this.props.nextCutDay)).format('ll')}
                 </div>
             </li>
         );
     }
 }
 Card.propTypes = {
-    id: PropTypes.number.isRequired,
-    nombre: PropTypes.string.isRequired,
-    disponible: PropTypes.number.isRequired,
-    corte: PropTypes.string.isRequired,
+    _id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    aviable: PropTypes.number.isRequired,
+    cutDay: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     removeCard: PropTypes.func.isRequired,
     openCardDetails: PropTypes.func.isRequired

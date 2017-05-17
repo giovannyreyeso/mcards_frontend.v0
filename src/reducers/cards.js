@@ -1,16 +1,13 @@
 import * as CardsActionTypes from '../actiontypes/cards';
-const URL_BASE = {
-    production: '',
-    development: 'http//localhost:1337'
-};
 const initialState = {
     cards: {
         all: [],
+        selectedCard: -1,
         showForm: false,
         listCardsIsLoading: true,
+        showListCards: true,
         listcardsHasError: false,
-        showCardDetails: false,
-        showListCards: true
+        showCardDetails: false
     }
 }
 
@@ -23,11 +20,16 @@ export default function Card(state = initialState, action) {
                     ...state.cards.all,
                     action.playload
                 ]
-                let obj = Object.assign({}, state.cards, {all: addCardList})
+                let obj = Object.assign({}, state.cards, {
+                    all: addCardList
+                })
                 obj.showListCards = true;
                 obj.showForm = false;
                 obj.showCardDetails = false;
-                return {state, cards: obj};
+                return {
+                    state,
+                    cards: obj
+                };
             }
         case CardsActionTypes.REMOVE_CARD:
             {
@@ -35,9 +37,14 @@ export default function Card(state = initialState, action) {
                     ...state.cards.all.slice(0, action.playload),
                     ...state.cards.all.slice(action.playload + 1)
                 ];
-                let obj = Object.assign({}, state.cards, {all: removeCardList})
+                let obj = Object.assign({}, state.cards, {
+                    all: removeCardList
+                })
                 obj.showForm = false;
-                return {state, cards: obj};
+                return {
+                    state,
+                    cards: obj
+                };
             }
         case CardsActionTypes.SHOW_FORM_ADD_CARD:
             {
@@ -46,7 +53,10 @@ export default function Card(state = initialState, action) {
                     showListCards: false,
                     showCardDetails: false
                 })
-                return {state, cards: obj};
+                return {
+                    state,
+                    cards: obj
+                };
             }
         case CardsActionTypes.SHOW_LIST_CARDS:
             {
@@ -55,7 +65,10 @@ export default function Card(state = initialState, action) {
                     showForm: false,
                     showCardDetails: false
                 })
-                return {state, cards: obj};
+                return {
+                    state,
+                    cards: obj
+                };
             }
         case CardsActionTypes.LIST_ALL_CARDS:
             {
@@ -64,21 +77,33 @@ export default function Card(state = initialState, action) {
                     all: action.playload,
                     showForm: false
                 })
-                return {state, cards: obj}
+                return {
+                    state,
+                    cards: obj
+                }
             }
         case CardsActionTypes.LIST_ALL_CARDS_LOADING:
             {
-                let obj = Object.assign({}, state.cards, {listCardsIsLoading: action.playload});
-                return {state, cards: obj}
+                let obj = Object.assign({}, state.cards, {
+                    listCardsIsLoading: action.playload
+                });
+                return {
+                    state,
+                    cards: obj
+                }
             }
         case CardsActionTypes.OPEN_CARD_DETAILS:
             {
                 let obj = Object.assign({}, state.cards, {
                     showCardDetails: true,
-                    showListCards: false
+                    showListCards: false,
+                    selectedCard: action.playload
                 })
 
-                return {state, cards: obj};
+                return {
+                    state,
+                    cards: obj
+                };
             }
         default:
             return state;

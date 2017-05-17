@@ -64,6 +64,9 @@ ul.collection.cards li {
   border-top: 2px solid #e0e0e0;
   padding-left: 25px !important;
   border-radius: 4px;
+  list-style: none;
+  background: #FFF;
+  padding: 15px;
 }
 
 p.cut-date {

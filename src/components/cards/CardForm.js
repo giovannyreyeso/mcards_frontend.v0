@@ -1,48 +1,51 @@
 import React, {Component, PropTypes} from 'react';
 export default class CardForm extends Component {
     static propTypes = {
-        addCard: PropTypes.func.isRequired
+        saveData: PropTypes.func.isRequired
     };
     state = {
         id: '',
-        nombre: '',
-        disponible: '',
-        corte: ''
+        name: '',
+        aviable: '',
+        cutDay: 1
     };
     addCard = (e) => {
         if (e)
             e.preventDefault();
-        const id = Math.floor((Math.random() * 10) + 1);
-        this.setState({id})
-        this.props.addCard(this.state);
-        this.setState({name: '', disponible: '', corte: ''});
+
+        //const id = Math.floor((Math.random() * 10) + 1);
+        //this.setState({id})
+
+        this.props.saveData('/api/card', this.state);
+        //this.setState({name: '', disponible: '', corte: ''});
     };
     onNameChange = (e) => {
         const name = e.target.value;
         this.setState({name});
     };
     onDisponibleChange = (e) => {
-        let disponible = e.target.value;
-        disponible = parseInt(disponible)
-        this.setState({disponible});
+        let aviable = e.target.value;
+        aviable = parseInt(aviable)
+        this.setState({aviable});
     };
     onCorteChange = (e) => {
-        const corte = e.target.value;
-        this.setState({corte});
+        debugger
+        let cutDay = e.target.value
+        cutDay = parseInt(cutDay)
+        this.setState({cutDay});
     }
     componentDidMount() {
-        $('select').material_select();
+        //$('select').material_select();
     }
     render() {
         return (
             <div className="add-player-form">
                 <form onSubmit={this.addCard}>
                     <input type="text" value={this.state.name} placeholder="Nombre de la tarjeta" required onChange={this.onNameChange}/>
-                    <input type="text" value={this.state.disponible} placeholder="Cantidad disponible actualmente" required onChange={this.onDisponibleChange}/>
+                    <input type="text" value={this.state.aviable} placeholder="Cantidad disponible actualmente" required onChange={this.onDisponibleChange}/>
                     <div className="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Escoje el dia de pago</option>
-                            <option value="1">1</option>
+                        <select value={this.state.cutDay} required onChange={this.onCorteChange}>
+                            <option value="1" selected>1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
@@ -75,7 +78,7 @@ export default class CardForm extends Component {
                             <option value="31">31</option>
                         </select>
                     </div>
-                    <input className="waves-effect waves-light btn" type="submit" value="Add Card"/>
+                    <input className="btn btn-primary" type="submit" value="Add Card"/>
                 </form>
             </div>
         );
