@@ -22,12 +22,12 @@ const rootReducer = combineReducers({Card, User});
 const store = createStore(rootReducer, applyMiddleware(thunk));
 //console.log(store.getState())
 firebase.initializeApp({
-    apiKey: "AIzaSyB0_zFBD8gkmjNI4FdpuejnbQccPfHmWxQ",
-    authDomain: "mcards-c8e47.firebaseapp.com",
-    databaseURL: "https://mcards-c8e47.firebaseio.com",
-    projectId: "mcards-c8e47",
-    storageBucket: "mcards-c8e47.appspot.com",
-    messagingSenderId: "213556699437"
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
 });
 render(
     <Routes store={store}/>, document.getElementById('app'));
